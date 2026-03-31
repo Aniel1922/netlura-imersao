@@ -1,0 +1,368 @@
+/* Reset e configurações base - Remove margens e paddings padrão de todos os elementos */
+* {
+    margin: 0; /* Remove margem externa de todos os elementos */
+    padding: 0; /* Remove preenchimento interno de todos os elementos */
+    box-sizing: border-box; /* Inclui padding e border na largura/altura total do elemento */
+}
+
+/* Variáveis de tema (Dark Mode - padrão) */
+:root[data-theme="dark"],
+:root {
+    --bg-primary: #000000;
+    --bg-secondary: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --border-color: #333333;
+}
+
+/* Variáveis de tema (Light Mode) */
+:root[data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --text-primary: #000000;
+    --text-secondary: #666666;
+    --border-color: #e0e0e0;
+}
+
+/* Estilos do corpo da página */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Define a família de fontes (fonte da Netflix) */
+    background-color: var(--bg-primary); /* Cor de fundo usando variável de tema */
+    color: var(--text-primary); /* Cor do texto usando variável de tema */
+    min-height: 100vh; /* Altura mínima de 100% da viewport */
+    display: flex; /* Usa flexbox para layout */
+    flex-direction: column; /* Organiza elementos filhos em coluna */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave ao trocar tema */
+}
+
+/* Header e navegação - Estilos para o cabeçalho da página */
+header {
+    padding: 1.5rem 3rem; /* Espaçamento interno: 1.5rem cima/baixo, 3rem esquerda/direita */
+    background-color: var(--bg-primary); /* Fundo usando variável de tema */
+    transition: background-color 0.3s ease; /* Transição suave */
+}
+
+/* Container da navegação */
+.nav-container {
+    display: flex; /* Usa flexbox para layout */
+    justify-content: space-between; /* Distribui espaço entre itens */
+    align-items: center; /* Centraliza itens verticalmente */
+    max-width: 1200px; /* Largura máxima */
+    margin: 0 auto; /* Centraliza horizontalmente */
+}
+
+/* Logo da Netflix */
+.logo img {
+    height: 50px; /* Altura fixa do logo */
+    width: auto; /* Largura automática para manter proporção */
+}
+
+/* Botão de alternar tema */
+.theme-toggle {
+    background-color: transparent; /* Fundo transparente */
+    border: 1px solid var(--text-secondary); /* Borda cinza */
+    color: var(--text-primary); /* Cor do texto */
+    padding: 0.5rem 0.75rem; /* Padding interno */
+    border-radius: 4px; /* Bordas arredondadas */
+    font-size: 1.2rem; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor de ponteiro */
+    transition: all 0.3s ease; /* Transição suave */
+    display: flex; /* Usa flexbox para centralizar */
+    align-items: center; /* Centraliza itens verticalmente */
+    justify-content: center; /* Centraliza itens horizontalmente */
+    line-height: 1; /* Remove espaço extra de linha */
+}
+
+/* Efeitos de hover no botão de tema */
+.theme-toggle:hover {
+    border-color: var(--text-primary); /* Borda muda para cor primária */
+    background-color: var(--bg-secondary); /* Fundo muda para cor secundária */
+}
+
+/* Conteúdo principal - Container central da página */
+main {
+    flex: 1; /* Ocupa todo o espaço disponível no flex container */
+    display: flex; /* Usa flexbox para centralizar conteúdo */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    padding: 2rem; /* Espaçamento interno de 2rem em todos os lados */
+    min-height: calc(100vh - 200px); /* Altura mínima calculada (viewport - 200px) */
+}
+
+/* Seção de seleção de perfis */
+.profile-selection {
+    text-align: center; /* Alinha texto ao centro */
+    max-width: 800px; /* Largura máxima de 800px */
+    width: 100%; /* Largura total disponível até o máximo */
+}
+
+/* Header dentro da seção de perfis */
+.profile-selection header {
+    margin-bottom: 3rem; /* Margem inferior de 3rem */
+}
+
+/* Título principal "Quem está assistindo?" */
+#profile-title {
+    font-size: 3.5rem; /* Tamanho da fonte grande (3.5rem) */
+    font-weight: 300; /* Peso da fonte leve (light) */
+    color: var(--text-primary); /* Cor usando variável de tema */
+    margin-bottom: 0.5rem; /* Margem inferior pequena */
+    letter-spacing: -0.02em; /* Espaçamento entre letras reduzido */
+}
+
+/* Container dos perfis - Organiza os perfis em linha */
+.profiles {
+    list-style: none; /* Remove marcadores de lista */
+    padding: 0; /* Remove padding padrão da lista */
+    margin: 0; /* Remove margem padrão da lista */
+    display: flex; /* Usa flexbox para layout horizontal */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    gap: 2rem; /* Espaço de 2rem entre os perfis */
+    margin-bottom: 3rem; /* Margem inferior de 3rem */
+    flex-wrap: wrap; /* Permite quebra de linha em telas pequenas */
+}
+
+/* Itens de lista dentro de .profiles */
+.profiles > li {
+    display: flex; /* Usa flexbox para centralizar conteúdo */
+    flex-direction: column; /* Organiza em coluna */
+    align-items: center; /* Centraliza itens horizontalmente */
+    justify-content: center; /* Centraliza itens verticalmente */
+}
+
+/* Estilo dos perfis individuais */
+.profile {
+    display: inline-block; /* Tornar clicável mais fácil para anchor */
+    cursor: pointer; /* Cursor de ponteiro para indicar clicabilidade */
+    transition: all 0.3s ease; /* Transição suave de 0.3s em todas as propriedades */
+    border-radius: 4px; /* Bordas arredondadas de 4px */
+    overflow: hidden; /* Esconde conteúdo que ultrapassa as bordas */
+    background-color: transparent; /* Fundo transparente */
+    border: none; /* Remove borda padrão */
+    padding: 0; /* Remove padding interno */
+    outline: none; /* Remove outline padrão */
+    text-decoration: none; /* Remove sublinhado do link */
+    color: inherit; /* Herdar a cor do texto */
+}
+
+/* Efeitos de hover nos perfis */
+.profile:hover {
+    transform: scale(1.1); /* Aumenta o tamanho em 10% no hover */
+}
+
+/* Figure dentro dos perfis (container da imagem) */
+.profile figure {
+    margin: 0; /* Remove margem padrão */
+}
+
+/* Imagens dos perfis */
+.profile img {
+    width: 120px; /* Largura fixa de 120px */
+    height: 120px; /* Altura fixa de 120px */
+    border-radius: 4px; /* Bordas arredondadas de 4px */
+    object-fit: cover; /* Ajusta imagem para cobrir todo o espaço mantendo proporção */
+    transition: all 0.3s ease; /* Transição suave em todas as propriedades */
+    border: 3px solid transparent; /* Borda transparente de 3px */
+}
+
+/* Efeitos de hover nas imagens */
+.profile:hover img {
+    border-color: var(--text-primary); /* Borda usando cor primária */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* Sombra branca suave */
+}
+
+/* Sombra em light mode */
+:root[data-theme="light"] .profile:hover img {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra preta suave para light mode */
+}
+
+/* Legendas dos perfis (nomes) */
+.profile figcaption {
+    margin-top: 1rem; /* Margem superior de 1rem */
+    font-size: 1.1rem; /* Tamanho da fonte de 1.1rem */
+    font-weight: 400; /* Peso da fonte normal */
+    color: var(--text-primary); /* Cor usando variável de tema */
+    text-shadow: none; /* Remove sombra em light mode */
+    transition: text-shadow 0.3s ease; /* Transitividade suave */
+}
+
+/* Sombra de texto em dark mode */
+:root[data-theme="dark"] .profile figcaption {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8); /* Sombra no texto para melhor legibilidade */
+}
+
+/* Container das ações dos perfis */
+.profile-actions {
+    margin-top: 2rem; /* Margem superior de 2rem */
+}
+
+/* Botão "Gerenciar perfis" */
+.manage-profiles-btn {
+    background-color: transparent; /* Fundo transparente */
+    color: var(--text-secondary); /* Cor cinza usando variável */
+    border: 1px solid var(--text-secondary); /* Borda cinza usando variável */
+    padding: 0.75rem 1.5rem; /* Padding interno: 0.75rem cima/baixo, 1.5rem esquerda/direita */
+    border-radius: 4px; /* Bordas arredondadas de 4px */
+    font-size: 1rem; /* Tamanho da fonte padrão */
+    font-weight: 400; /* Peso da fonte normal */
+    cursor: pointer; /* Cursor de ponteiro */
+    transition: all 0.3s ease; /* Transição suave em todas as propriedades */
+    font-family: inherit; /* Herda a família de fonte do elemento pai */
+}
+
+/* Efeitos de hover no botão */
+.manage-profiles-btn:hover {
+    color: var(--text-primary); /* Cor muda para cor primária */
+    border-color: var(--text-primary); /* Borda muda para cor primária */
+}
+
+/* Footer da página */
+footer {
+    padding: 2rem 3rem; /* Padding interno: 2rem cima/baixo, 3rem esquerda/direita */
+    background-color: var(--bg-primary); /* Fundo usando cor primária para fundir com a página */
+    margin-top: auto; /* Empurra o footer para o final da página */
+    transition: background-color 0.3s ease; /* Transição suave */
+}
+
+.footer-content {
+    max-width: 1200px; /* Alinha com largura da página */
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Parágrafo no footer */
+footer p {
+    color: var(--text-secondary); /* Cor cinza clara */
+    font-size: 0.9rem; /* Tamanho da fonte menor */
+    margin-bottom: 1rem; /* Margem inferior de 1rem */
+    text-align: center; /* Alinhamento centralizado */
+}
+
+.footer-content > p,
+.footer-content > nav {
+    margin: 0;
+}
+
+/* Lista de navegação no footer */
+footer nav ul {
+    display: flex; /* Layout flexível */
+    justify-content: center; /* Centraliza os itens */
+    list-style: none; /* Remove marcadores da lista */
+    gap: 2rem; /* Espaço de 2rem entre itens */
+}
+
+/* Links no footer */
+footer a {
+    color: var(--text-secondary); /* Cor cinza clara */
+    text-decoration: none; /* Remove sublinhado */
+    font-size: 0.9rem; /* Tamanho da fonte menor */
+    transition: color 0.3s ease; /* Transição suave na cor */
+}
+
+/* Efeitos de hover nos links do footer */
+footer a:hover {
+    color: var(--text-primary); /* Cor primária no hover */
+    text-decoration: underline; /* Sublinhado no hover */
+}
+
+/* Media queries para responsividade */
+
+/* Estilos para tablets e celulares grandes */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem 1.5rem; /* Padding reduzido para telas menores */
+    }
+
+    .nav-container {
+        flex-wrap: wrap; /* Permite quebra de linha em telas menores */
+    }
+
+    .logo img {
+        height: 35px; /* Logo menor em telas menores */
+    }
+
+    .theme-toggle {
+        padding: 0.4rem 0.6rem; /* Padding reduzido */
+        font-size: 1rem; /* Tamanho da fonte menor */
+    }
+
+    main {
+        padding: 1rem; /* Padding reduzido */
+    }
+
+    #profile-title {
+        font-size: 2.5rem; /* Título menor */
+    }
+
+    .profiles {
+        gap: 0.5rem; /* Espaço menor entre perfis */
+    }
+
+    .profile img {
+        width: 100px; /* Imagens menores */
+        height: 100px;
+    }
+
+    .profile figcaption {
+        font-size: 1rem; /* Texto menor */
+    }
+
+    footer {
+        padding: 1.5rem 1.5rem; /* Padding reduzido */
+    }
+
+    footer nav ul {
+        gap: 1rem; /* Espaço menor */
+        flex-wrap: wrap; /* Quebra em várias linhas se necessário */
+    }
+}
+
+/* Estilos para celulares pequenos */
+@media (max-width: 480px) {
+    #profile-title {
+        font-size: 2rem; /* Título ainda menor */
+    }
+
+    .profiles {
+        flex-direction: row; /* Duas colunas no responsivo */
+        flex-wrap: wrap; /* Quebra em várias linhas */
+        justify-content: center; /* Centraliza as colunas */
+        gap: 0.5rem; /* Espaço reduzido entre perfis */
+    }
+
+    .profiles > li {
+        flex: 0 1 calc(50% - 0.5rem); /* 2 colunas com espaçamento */
+        max-width: calc(50% - 0.5rem);
+    }
+
+    .profile img {
+        width: 120px; /* Volta ao tamanho original para celulares pequenos */
+        height: 120px;
+    }
+}
+
+/* Estilos de foco para acessibilidade */
+.profile:focus {
+    outline: 2px solid var(--text-primary); /* Outline usando cor primária */
+    outline-offset: 4px; /* Distância do outline para o elemento */
+}
+
+.manage-profiles-btn:focus {
+    outline: 2px solid var(--text-primary); /* Outline usando cor primária */
+    outline-offset: 2px; /* Distância menor do outline */
+}
+
+.theme-toggle:focus {
+    outline: 2px solid var(--text-primary); /* Outline usando cor primária */
+    outline-offset: 2px; /* Distância menor do outline */
+}
+
+/* Animações suaves globais */
+* {
+    transition: border-color 0.3s ease, color 0.3s ease; /* Transições suaves para bordas e cores */
+}

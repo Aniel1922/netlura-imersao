@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página de seleção de perfis da Netflix - Escolha seu perfil para começar a assistir">
+    <meta name="keywords" content="Netflix, streaming, filmes, séries, perfis">
+    <meta name="author" content="Netflix">
+    <title>Netflix - Quem está assistindo?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav aria-label="Navegação principal">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="/NETFLIX/assets/netflix-logo.png" alt="Logo Netflix" width="150" height="50">
+                </div>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Alternar modo claro/escuro" title="Alternar tema">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="profile-selection" aria-labelledby="profile-title">
+            <header>
+                <h1 id="profile-title">Quem está assistindo?</h1>
+            </header>
+
+            <ul class="profiles" aria-label="Perfis disponíveis">
+                <li>
+                    <a href="catalogo/catalogo.html" class="profile" aria-label="Selecionar perfil André" role="button">
+                        <figure>
+                            <img src="/NETFLIX/assets/perfil-1.jpg" alt="Perfil de André" width="120" height="120">
+                            <figcaption>André</figcaption>
+                        </figure>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="catalogo/catalogo.html" class="profile" aria-label="Selecionar perfil Ana" role="button">
+                        <figure>
+                            <img src="/NETFLIX/assets/perfil-2.jpg" alt="Perfil de Ana" width="120" height="120">
+                            <figcaption>Ana</figcaption>
+                        </figure>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="catalogo/catalogo.html" class="profile" aria-label="Selecionar perfil Esther" role="button">
+                        <figure>
+                            <img src="/NETFLIX/assets/perfil-3.jpg" alt="Perfil de Esther" width="120" height="120">
+                            <figcaption>Esther</figcaption>
+                        </figure>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="catalogo/catalogo.html" class="profile" aria-label="Selecionar perfil Sara" role="button">
+                        <figure>
+                            <img src="/NETFLIX/assets/perfil-4.JPG" alt="Perfil de Sara" width="120" height="120">
+                            <figcaption>Sara</figcaption>
+                        </figure>
+                    </a>
+                </li>
+            </ul>
+
+            <footer class="profile-actions">
+                <button type="button" class="manage-profiles-btn" aria-label="Gerenciar perfis">
+                    Gerenciar perfis
+                </button>
+            </footer>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Netflix. Todos os direitos reservados.</p>
+            <nav aria-label="Links legais">
+                <ul>
+                    <li><a href="/termos">Termos de Uso</a></li>
+                    <li><a href="/privacidade">Política de Privacidade</a></li>
+                    <li><a href="/ajuda">Central de Ajuda</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="theme.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        // Capturar cliques nos perfis e armazenar no localStorage
+        document.querySelectorAll('.profile').forEach(profile => {
+            profile.addEventListener('click', function(event) {
+                event.preventDefault(); // Evita navegação antes de salvar
+                
+                // Extrai o nome do perfil (do figcaption)
+                const nome = this.querySelector('figcaption').textContent;
+                
+                // Extrai a URL da imagem
+                const imagem = this.querySelector('img').src;
+                
+                // Armazena no localStorage com as chaves que o catalogo espera
+                localStorage.setItem('perfilAtivoNome', nome);
+                localStorage.setItem('perfilAtivoImagem', imagem);
+                
+                console.log('Perfil salvo:', { nome, imagem });
+                
+                // Agora navega para o catálogo
+                window.location.href = this.href;
+            });
+        });
+    </script>
+
+</body>
+</html>
